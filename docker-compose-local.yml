@@ -1,0 +1,61 @@
+version: '3'
+services:  
+  # discovery-server with eureka
+  discovery-server:
+    image: eybilal/discovery-server
+    container_name: discovery-server
+    ports:
+      - '8761:8761'
+    restart: on-failure
+    networks:
+      - commons-backend
+  
+  # config server
+  config-server:
+    image: eybilal/config-server
+    container_name: config-server
+    ports:
+      - '8888:8888'
+    environment:
+      SPRING_PROFILES_ACTIVE: local-docker  
+    depends_on:
+      - discovery-server
+    restart: on-failure
+    networks:
+      - commons-backend
+
+  # api gateway
+  api-gateway:
+    image: eybilal/api-gateway
+    container_name: api-gateway
+    ports:
+      - '8080:8080'
+    environment:
+      SPRING_PROFILES_ACTIVE: local-docker
+    depends_on:
+      - discovery-server
+      - config-server
+      - auth-server
+    restart: on-failure
+    networks:
+      - commons-backend
+
+  # auth service with spring security
+  auth-server:
+    image: eybilal/auth-server
+    container_name: auth-server
+    ports:
+      - '8081:8081'
+    depends_on:
+      - config-server
+      - discovery-server
+    environment:
+      SPRING_PROFILES_ACTIVE: local-docker
+    restart: on-failure
+    networks:
+      - commons-backend
+ 
+# Network to be used across multiple services    
+networks:
+    commons-backend:
+        external: true
