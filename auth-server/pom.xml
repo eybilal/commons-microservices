@@ -146,7 +146,6 @@
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>0.34.1</version>
 				<configuration>
-					<dockerHost>http://localhost:2375</dockerHost>	<!-- Needed for Windows OS -->
 					<verbose>true</verbose>
 					<images>
 						<image>
