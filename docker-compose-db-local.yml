@@ -16,7 +16,7 @@ services:
     volumes:
       - commons-db-data:/var/lib/postgresql/data
     ports:
-      - '15432:5432'
+      - '5432:5432'
     restart: unless-stopped # or always
     networks:
       - commons-backend

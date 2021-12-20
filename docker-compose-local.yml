@@ -51,6 +51,7 @@ services:
       - discovery-server
     environment:
       SPRING_PROFILES_ACTIVE: local-docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:15432/auth-db
     restart: on-failure
     networks:
       - commons-backend
