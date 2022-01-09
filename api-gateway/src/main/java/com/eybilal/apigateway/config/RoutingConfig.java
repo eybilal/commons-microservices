@@ -70,7 +70,7 @@ public class RoutingConfig {
                                         "/api/v1/products/**",
                                         "/api/v1/categories/**"
                                         )
-                                      .uri("lb://esm-inventory-service:8086")
+                                      .uri("lb://esm-inventory-service")
                                       .id("esm-inventory-service")
                                   )
                                   .build();
