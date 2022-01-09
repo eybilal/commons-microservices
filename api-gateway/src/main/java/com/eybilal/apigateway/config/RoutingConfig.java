@@ -63,15 +63,15 @@ public class RoutingConfig {
                                       .id("refresh-token")
                                   )
                                   .route(route -> route.path("/api/v1/customers/*")
-                                      .uri("lb://customer-service")
-                                      .id("customer-service")
+                                      .uri("lb://esm-customer-service")
+                                      .id("esm-customer-service")
                                   )
                                   .route(route -> route.path(
                                         "/api/v1/products/**",
                                         "/api/v1/categories/**"
                                         )
-                                      .uri("lb://inventory-service:8086")
-                                      .id("inventory-service")
+                                      .uri("lb://esm-inventory-service:8086")
+                                      .id("esm-inventory-service")
                                   )
                                   .build();
     }
