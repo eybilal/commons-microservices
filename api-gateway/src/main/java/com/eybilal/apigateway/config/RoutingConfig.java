@@ -62,7 +62,7 @@ public class RoutingConfig {
                                       .uri("lb://auth-server")
                                       .id("refresh-token")
                                   )
-                                  .route(route -> route.path("/api/v1/customers/*")
+                                  .route(route -> route.path("/api/v1/customers/**")
                                       .uri("lb://esm-customer-service")
                                       .id("esm-customer-service")
                                   )
