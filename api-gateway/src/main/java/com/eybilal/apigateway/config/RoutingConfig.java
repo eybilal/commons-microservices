@@ -55,11 +55,11 @@ public class RoutingConfig {
     RouteLocator localDockerRoutes(RouteLocatorBuilder routeLocatorBuilder) {
         return routeLocatorBuilder.routes()
                                   .route(route -> route.path("/login")
-                                      .uri("lb://auth-service")
+                                      .uri("lb://auth-server")
                                       .id("login")
                                   )
                                   .route(route -> route.path("/refresh-token")
-                                      .uri("lb://auth-service")
+                                      .uri("lb://auth-server")
                                       .id("refresh-token")
                                   )
                                   .route(route -> route.path("/api/v1/customers/*")
