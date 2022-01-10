@@ -25,18 +25,25 @@ public class RoutingConfig {
                                   )
                                   .route(route -> route.path("/api/v1/customers/**")
                                       .uri("http://localhost:8085")
-                                      .id("customer-service")
+                                      .id("esm-customer-service")
                                   )
                                   .route(route -> route.path(
                                           "/api/v1/products/**",
                                           "/api/v1/categories/**"
                                       )
                                       .uri("http://localhost:8086")
-                                      .id("inventory-service")
+                                      .id("esm-inventory-service")
                                   )
                                   .route(route -> route.path("/api/v1/orders/**")
                                       .uri("http://localhost:8087")
-                                      .id("order-service")
+                                      .id("esm-order-service")
+                                  )
+                                  .route(route -> route.path(
+                                        "/api/v2/products/**",
+                                        "/api/v2/categories/**"
+                                      )
+                                      .uri("http://localhost:8091")
+                                      .id("esedm-inventory-service")
                                   )
                                    // TODO circuit breaker for customers microservice
 //                                    .route(route -> route.path("api/v1/customers")
@@ -72,6 +79,13 @@ public class RoutingConfig {
                                         )
                                       .uri("lb://esm-inventory-service")
                                       .id("esm-inventory-service")
+                                  )
+                                  .route(route -> route.path(
+                                        "/api/v2/products/**",
+                                                 "/api/v2/categories/**"
+                                        )
+                                        .uri("lb://esedm-inventory-service")
+                                        .id("esedm-inventory-service")
                                   )
                                   .build();
     }
